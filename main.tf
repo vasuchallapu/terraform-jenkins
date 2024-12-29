@@ -17,7 +17,7 @@ module "security_group" {
 module "jenkins" {
   source                    = "./jenkins"
   ami_id                    = var.ec2_ami_id
-  instance_type             = "t2.medium"
+  instance_type             = "t2.micro"
   tag_name                  = "Jenkins:Ubuntu Linux EC2"
   public_key                = var.public_key
   subnet_id                 = tolist(module.networking.dev_proj_1_public_subnets)[0]
@@ -56,13 +56,13 @@ module "alb" {
 
 module "hosted_zone" {
   source          = "./hosted-zone"
-  domain_name     = "jenkins.jhooq.org"
+  domain_name     = "jenkins.vasuchallapu.click"
   aws_lb_dns_name = module.alb.aws_lb_dns_name
   aws_lb_zone_id  = module.alb.aws_lb_zone_id
 }
 
 module "aws_ceritification_manager" {
   source         = "./certificate-manager"
-  domain_name    = "jenkins.jhooq.org"
+  domain_name    = "jenkins.vasuchallapu.click"
   hosted_zone_id = module.hosted_zone.hosted_zone_id
 }

@@ -33,9 +33,9 @@ resource "aws_security_group" "ec2_sg_ssh_http" {
     protocol    = "tcp"
   }
 
-  # enable http
+  # enable https
   ingress {
-    description = "Allow HTTP request from anywhere"
+    description = "Allow HTTPS request from anywhere"
     cidr_blocks = ["0.0.0.0/0"]
     from_port   = 443
     to_port     = 443
@@ -71,7 +71,7 @@ resource "aws_security_group" "ec2_jenkins_port_8080" {
   }
 
   tags = {
-    Name = "Security Groups to allow SSH(22) and HTTP(80)"
+    Name = "Security Groups to allow port 8080"
   }
 }
 
